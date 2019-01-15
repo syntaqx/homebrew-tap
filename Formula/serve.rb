@@ -1,9 +1,9 @@
 class Serve < Formula
   desc "serve is a static http server anywhere you need one."
   homepage "https://github.com/syntaqx/serve"
-  url "https://github.com/syntaqx/serve/releases/download/v0.0.6/serve_0.0.6_macos_x86_64.tar.gz"
-  version "0.0.6"
-  sha256 "2ae256e008be479fe427adb34af7fda161c7191bcb5a1074291b39dfc3d80470"
+  url "https://github.com/syntaqx/serve/releases/download/v0.0.7/serve_0.0.7_macos_x86_64.tar.gz"
+  version "0.0.7"
+  sha256 "573d3526b7bf5872341244be5a5598e24ad224022a11d1183470e3861c41ea89"
 
   def install
     bin.install "serve"
