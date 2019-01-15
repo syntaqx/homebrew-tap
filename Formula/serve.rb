@@ -1,4 +1,4 @@
-class Nfpm < Formula
+class Serve < Formula
     desc "serve is a static http server anywhere you need one"
     homepage "https://github.com/syntaqx/serve"
     url "https://github.com/syntaqx/serve/releases/download/v0.0.1/serve_0.0.1_macos_x86_64.tar.gz"
