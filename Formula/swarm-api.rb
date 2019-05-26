@@ -2,9 +2,9 @@
 class SwarmApi < Formula
   desc "swarm-api is a dead simple REST API for Docker Swarm"
   homepage "https://github.com/syntaqx/swarm-api"
-  url "https://github.com/syntaqx/swarm-api/releases/download/v0.0.3-rc.7/swarm-api_0.0.3-rc.7_darwin_amd64.tar.gz"
-  version "0.0.3-rc.7"
-  sha256 "162bbd30fa641d5bd741aaf788e0868143708e752f1b864bc4278ccf3c4d13df"
+  url "https://github.com/syntaqx/swarm-api/releases/download/v0.0.3/swarm-api_0.0.3_darwin_amd64.tar.gz"
+  version "0.0.3"
+  sha256 "880933cedad95c5ca61616064c0873bd4c80929425bf00c38a4fc84646cd0930"
 
   def install
     bin.install "swarm-api"
