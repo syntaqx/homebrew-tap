@@ -2,9 +2,27 @@
 class Serve < Formula
   desc "serve is a static http server anywhere you need one."
   homepage "https://github.com/syntaqx/serve"
-  url "https://github.com/syntaqx/serve/releases/download/v0.4.0/serve_0.4.0_macos_x86_64.tar.gz"
-  version "0.4.0"
-  sha256 "65c26515f3ee53030f909e078eeacf8a15cdd7b6d88a8d22dae1da61b04eec8d"
+  version "0.5.0"
+  bottle :unneeded
+
+  if OS.mac?
+    url "https://github.com/syntaqx/serve/releases/download/v0.5.0/serve_0.5.0_macos_x86_64.tar.gz"
+    sha256 "fd51a18e47f0fc2ac0e177c865fd72b052c411bae96a5b59b4c50d7da2bb2dfc"
+  elsif OS.linux?
+    if Hardware::CPU.intel?
+      url "https://github.com/syntaqx/serve/releases/download/v0.5.0/serve_0.5.0_linux_x86_64.tar.gz"
+      sha256 "0ef2a32a69977d2da239d5b6b85a297945e0ebbf48a14699ae20da1d642f36d1"
+    end
+    if Hardware::CPU.arm?
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/syntaqx/serve/releases/download/v0.5.0/serve_0.5.0_linux_arm64.tar.gz"
+        sha256 "990e9b40b543f3911f67f65d61c13c82ae2792107488fd01d0f5343c902e7742"
+      else
+        url "https://github.com/syntaqx/serve/releases/download/v0.5.0/serve_0.5.0_linux_armv6.tar.gz"
+        sha256 "a3bd802ab951b4b2678dce21314592848b6f22dd7377bffe4d8fcce725ac31c6"
+      end
+    end
+  end
 
   def install
     bin.install "serve"
