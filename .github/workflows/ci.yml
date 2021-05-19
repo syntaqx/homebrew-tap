@@ -1,4 +1,4 @@
-name: ci
+name: CI
 on:
   push:
     branches: [ main ]
@@ -7,26 +7,31 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: macos-latest
+
+  test-bot:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+    runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
-    -
-      name: Set up Homebrew
-      id: set-up-homebrew
-      uses: Homebrew/actions/setup-homebrew@master
-    - name: Cache Homebrew Bundler RubyGems
-      id: cache
-      uses: actions/cache@v1
-      with:
-        path: ${{ steps.set-up-homebrew.outputs.gems-path }}
-        key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
-        restore-keys: ${{ runner.os }}-rubygems-
-    -
-      run: >-
-        brew tap syntaqx/tap
-    -
-      run: >-
-        brew audit ./Formula/*.rb
-        brew install -v ./Formula/*.rb
-        brew test ./Formula/*.rb
+      -
+        name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      -
+        name: Cache Homebrew Bundler RubyGems
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+      -
+        name: Install Homebrew Bundler RubyGems
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: brew install-bundler-gems
+      -
+        run: >-
+          brew test-bot --only-cleanup-before
+          brew test-bot --only-setup
+          brew test-bot --only-tap-syntax
