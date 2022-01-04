@@ -3,7 +3,6 @@ class Serve < Formula
   desc "serve is a static http server anywhere you need one."
   homepage "https://github.com/syntaqx/serve"
   version "0.5.0"
-  bottle :unneeded
 
   if OS.mac?
     url "https://github.com/syntaqx/serve/releases/download/v0.5.0/serve_0.5.0_macos_x86_64.tar.gz"
